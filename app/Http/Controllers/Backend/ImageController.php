@@ -2,26 +2,30 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Models\Gallery\image;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\Gallery\image;
+use App\Http\services\fileService;
+use App\Http\Requests\ImageRequest;
+use App\Http\services\imageService;
 use App\Http\Controllers\Controller;
+
+use function Pest\Laravel\json;
 
 class ImageController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct(
+        private fileService $fileService,
+        private imageService $imageService
+    ) {}
+
     public function index()
     {
         return view('backend.image.index', [
-            'images' => image::latest()->get()
+            'images' => $this->imageService->select()
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('backend.image.create');
@@ -30,25 +34,17 @@ class ImageController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ImageRequest $request)
     {
-        $data = $request->validate([
-            'name' => 'required|min:3',
-            'description' => 'required|min:3',
-            'file' => 'required|image|mimetypes:image/jpeg,image/png,image/gif,image/svg,image/jpg|mimes:jpeg,png,gif,svg,jpg|max:2048' 
-        ]);
+        $data = $request->validated();
 
-        try{
-            $fileName = uniqid() . '.' . $request->file('file')->extension();
-
-            $data['file'] = $request->file('file')->storeAs('images', $fileName, 'public');
-
-            $data['uuid'] = Str::uuid();
-            $data['slug'] = Str::slug($data['name']);
-            image::create($data);
+        try {
+            $data['file'] = $this->fileService->upload($data['file'], 'images');
+            $this->imageService->create($data);
 
             return redirect()->route('image.index')->with('success', 'Image created successfully');
-        }catch(\Exception $err){
+        } catch (\Exception $err) {
+            $this->fileService->delete($data['file']);
             return redirect()->back()->with('error', $err->getMessage());
         }
     }
@@ -61,27 +57,47 @@ class ImageController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function edit(string $uuid)
     {
-        //
+        return view('backend.image.edit', [
+            'image' => $this->imageService->selectBy('uuid', $uuid)
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(ImageRequest $request, string $uuid)
     {
-        //
+        $data = $request->validated();
+        $getImage = $this->imageService->selectBy('uuid', $uuid);
+
+        try {
+            // jika edit gambar
+            if ($request->has('file')) {
+            //    hapus gambar lama
+            $this->fileService->delete($getImage->file);
+
+            //    upload gambar baru
+            $data['file'] = $this->fileService->upload($data['file'], 'images');
+            }else{
+                $data['file'] = $getImage->file;
+            }
+
+            $this->imageService->update($data, $uuid);
+
+            return redirect()->route('image.index')->with('success', 'Image update successfully');
+        } catch (\Exception $err) {
+            $this->fileService->delete($data['file']);
+            return redirect()->back()->with('error', $err->getMessage());
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy(string $uuid)
     {
-        //
+        $getImage = $this->imageService->selectBy('uuid', $uuid);
+        $this->fileService->delete($getImage->file);
+        $getImage->delete();
+
+        return response()->json([
+            'message' => 'Image deleted successfully'
+        ]);
     }
 }

@@ -18,7 +18,7 @@
     </nav>
     <div class="d-flex justify-content-between w-100 flex-wrap">
         <div class="mb-3 mb-lg-0">
-            <h1 class="h4">Add</h1>
+            <h1 class="h4">Edit</h1>
             <p class="mb-0">Dozens of reusable components built to provide buttons, alerts, popovers, and more.</p>
         </div>
         <div>
@@ -34,11 +34,12 @@
 
 <div class="card border-0 shadow mb-4">
     <div class="card-body">
-        <form action="{{route('image.store')}}" method="post" enctype="multipart/form-data">
+        <form action="{{route('image.update', $image->uuid)}}" method="post" enctype="multipart/form-data">
+            @method('PUT')
             @csrf
             <div class="mb-3">
                 <label for="" class="form-label">Name</label>
-                <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="" aria-describedby="helpId" value="{{old('name')}}"">
+                <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="" aria-describedby="helpId" value="{{old('name', $image->name)}}"">
                 @error('name')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -47,9 +48,7 @@
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">Description</label>
-                <textarea name="description" cols="30" rows="10" id="description" class="form-control @error('description') is-invalid @enderror">
-                    {{old('description')}}
-                </textarea>
+                <textarea name="description" cols="30" rows="10" id="description" class="form-control @error('description') is-invalid @enderror">{{old('description', $image->description)}}</textarea>
                 @error('description')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -59,6 +58,9 @@
             <div class="mb-3">
                 <label for="" class="form-label">File</label>
                 <input type="file" name="file" id="file" accept="image/*" class="form-control @error('file') is-invalid @enderror">
+                <div>
+                    <img src="{{asset('storage/'.$image->file)}}" class="img-fluid mt-3" width="30%" >
+                </div>
                 @error('file')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>

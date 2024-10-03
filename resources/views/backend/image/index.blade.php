@@ -35,15 +35,15 @@
 <div class="card border-0 shadow mb-4">
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-centered table-nowrap mb-0 rounded">
+            <table class="table table-bordered table-centered table-nowrap mb-0 rounded">
                 <thead class="thead-light">
                     <tr>
-                        <th class="border-0 rounded-start">No</th>
-                        <th class="border-0">Name</th>
-                        <th class="border-0">Slug</th>
-                        <th class="border-0">description</th>
-                        <th class="border-0">File</th>
-                        <th class="border-0">Action</th>
+                        <th class="border-0 rounded-start text-center">No</th>
+                        <th class="border-0 text-center">Name</th>
+                        <th class="border-0 text-center">Slug</th>
+                        <th class="border-0 text-center">description</th>
+                        <th class="border-0 text-center">Image</th>
+                        <th class="border-0 text-center" width="12%">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -54,21 +54,14 @@
                         <td>{{$loop->iteration}}</td>
                         <td>{{$item->name}}</td>
                         <td>{{$item->slug}}</td>
-                        <td>{{$item->description}}</td>
-                        <td>
-                            <img src="{{asset('storage/app/public/images/' . $item->file . '')}}" width="100" height="100" target="_blank">
+                        <td>{{Str::limit($item->description, 25, '...')}}</td>
+                        <td class="text-center">
+                            <img src="{{Storage::url($item->file)}}" width="100" height="100" target="_blank">
                         </td>
-                        <td>
-                            <div class="btn-group">
-                                <a href="" class="btn btn-sm btn-primary"><i class="far fa-edit"></i>
-                                    Edit
-                                </a>
-                                <form action="" method="post">
-                                    @csrf
-                                    @method('delete')
-                                    <button class="btn btn-sm btn-danger" type="submit"><i class="far fa-trash-alt"></i> Delete</button>
-                                </form>
-                            </div>
+                        <td class="text-center">
+                            <a href="" class="btn btn-sm btn-primary" title="View"><i class="bi bi-eye"></i></a>
+                            <a href="{{route('image.edit', $item->uuid)}}" class="btn btn-sm btn-warning" title="Edit"><i class="bi bi-pencil-square"></i></a>
+                            <button class="btn btn-sm btn-danger" title="Delete" onclick="deleteImage(this)" data-uuid="{{$item->uuid}}"><i class="bi bi-trash"></i></button>
                         </td>
                     </tr>
 
@@ -79,5 +72,53 @@
         </div>
     </div>
 </div>
-
 @endsection
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    const deleteImage = (e) => {
+        let uuid = e.getAttribute('data-uuid')
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    type: "DELETE",
+                    url: `/image/${uuid}`,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(data) {
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "data.message",
+                            icon: "success",
+                            timer: 2500,
+                            timerConfirmButton: false,
+                        });
+
+                        window.location.reload();
+                    },
+                    error:function(data){
+                        Swal.fire({
+                            title: "Failed!",
+                            text: "Your file has not deleted.",
+                            icon: "error"
+                        });
+
+                        console.log(data)
+                    }
+                });
+            }
+        });
+    }
+</script>
