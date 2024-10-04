@@ -22,7 +22,7 @@ class ImageController extends Controller
     public function index()
     {
         return view('backend.image.index', [
-            'images' => $this->imageService->select()
+            'images' => $this->imageService->select(2)
         ]);
     }
 
@@ -54,7 +54,7 @@ class ImageController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return 'detail';
     }
 
     public function edit(string $uuid)

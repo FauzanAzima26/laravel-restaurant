@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backend\MenuController;
 use App\Http\Controllers\Backend\ImageController;
 
 Route::get('/', function () {
@@ -14,6 +15,8 @@ Route::middleware('auth')->group(function () {
     })->name('dashboard');
 
     Route::resource('image', ImageController::class)->names('image');
+
+    Route::resource('menu', MenuController::class)->names('menu');
 });
 
 

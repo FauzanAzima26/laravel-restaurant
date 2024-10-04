@@ -17,15 +17,6 @@
                     <img src="{{asset('backend')}}/assets/img/team/profile-picture-3.jpg" class="card-img-top rounded-circle border-white"
                         alt="Bonnie Green">
                 </div>
-                <div class="d-block">
-                    <h2 class="h5 mb-3">Hi, Jane</h2>
-                    <a href="{{asset('backend')}}/pages/examples/sign-in.html" class="btn btn-secondary btn-sm d-inline-flex align-items-center">
-                        <svg class="icon icon-xxs me-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
-                        </svg>
-                        Sign Out
-                    </a>
-                </div>
             </div>
             <div class="collapse-close d-md-none">
                 <a href="#sidebarMenu" data-bs-toggle="collapse"
@@ -46,8 +37,8 @@
                     <span class="mt-1 ms-1 sidebar-text">Volt Overview</span>
                 </a>
             </li>
-            <li class="nav-item  active ">
-                <a href="{{asset('backend')}}/pages/dashboard/dashboard.html" class="nav-link">
+            <li class="nav-item {{request()->routeIs('dashboard') ? 'active' : ''}}">
+                <a href="{{route('dashboard')}}" class="nav-link">
                     <span class="sidebar-icon">
                         <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
@@ -77,11 +68,11 @@
                         </svg>
                     </span>
                 </span>
-                <div class="multi-level collapse " role="list"
+                <div class="multi-level collapse {{ request()->routeIs('menu.*') ? 'show' : '' }}" role="list"
                     id="submenu-pages" aria-expanded="false">
                     <ul class="flex-column nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{asset('backend')}}/pages/examples/sign-in.html">
+                        <li class="nav-item {{ request()->routeIs('menu.*') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{route('menu.index')}}">
                                 <span class="sidebar-text">Menu</span>
                             </a>
                         </li>

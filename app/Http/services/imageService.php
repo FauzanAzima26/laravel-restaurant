@@ -8,7 +8,11 @@ use Illuminate\Support\Facades\Storage;
 
 class imageService{
 
-    public function select(){
+    public function select($paginate = null){
+
+        if($paginate){
+            return image::latest()->paginate($paginate);
+        }
         return image::latest()->get();
     }
 
