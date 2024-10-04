@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backend\ChefController;
 use App\Http\Controllers\Backend\MenuController;
 use App\Http\Controllers\Backend\ImageController;
 
@@ -17,6 +18,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('image', ImageController::class)->names('image');
 
     Route::resource('menu', MenuController::class)->names('menu');
+
+    Route::resource('chef', ChefController::class)->names('chef');
 });
 
 

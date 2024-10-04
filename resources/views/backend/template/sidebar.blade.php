@@ -76,8 +76,8 @@
                                 <span class="sidebar-text">Menu</span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{asset('backend')}}/pages/examples/sign-up.html">
+                        <li class="nav-item {{request()->routeIs('chef.*') ? 'active' : ''}}">
+                            <a class="nav-link" href="{{route('chef.index')}}">
                                 <span class="sidebar-text">Chef</span>
                             </a>
                         </li>
