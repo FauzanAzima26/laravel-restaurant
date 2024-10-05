@@ -29,9 +29,5 @@ class chefService{
 
         return Chef::where('uuid', $uuid)->update($data);
     }
-
-    public function detail($data, $uuid){
-        
-    }
 }
 

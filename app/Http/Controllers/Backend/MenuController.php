@@ -57,23 +57,44 @@ class MenuController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return view('backend.menu.detail', [
+            'menu' => $this->menuService->selectBy('uuid', $id)
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $uuid)
     {
-        //
+        return view('backend.menu.edit', [
+            'menu' => $this->menuService->selectBy('uuid', $uuid),
+            'categories' => $this->categoryService->select()
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(MenuRequest $request, string $id)
     {
-        //
+        $data = $request->validated();
+        $getMenu = $this->menuService->selectBy('uuid', $id);
+
+        try {
+            if ($request->has('image')) {
+                $this->fileService->delete($getMenu->image);
+                $data['image'] = $this->fileService->upload($data['image'], 'images');
+            }else{
+                $data['image'] = $getMenu->image;
+            }
+            $this->menuService->update($data, $id);            
+            return redirect()->route('menu.index')->with('success', 'Menu updated successfully');
+
+        } catch (\Exception $err) {
+            $this->fileService->delete($data['image']);
+            return redirect()->back()->with('error', $err->getMessage());
+        }
     }
 
     /**

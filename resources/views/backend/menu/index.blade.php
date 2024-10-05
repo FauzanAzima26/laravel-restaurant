@@ -67,8 +67,8 @@
                             <img src="{{Storage::url($item->image)}}" width="100" height="100" target="_blank">
                         </td>
                         <td class="text-center">
-                            <a href="" class="btn btn-sm btn-primary" title="View"><i class="bi bi-eye"></i></a>
-                            <a href="{{route('image.edit', $item->uuid)}}" class="btn btn-sm btn-warning" title="Edit"><i class="bi bi-pencil-square"></i></a>
+                            <a href="{{route('menu.show', $item->uuid)}}" class="btn btn-sm btn-primary" title="View"><i class="bi bi-eye"></i></a>
+                            <a href="{{route('menu.edit', $item->uuid)}}" class="btn btn-sm btn-warning" title="Edit"><i class="bi bi-pencil-square"></i></a>
                             <button class="btn btn-sm btn-danger" title="Delete" onclick="deleteMenu(this)" data-uuid="{{$item->uuid}}"><i class="bi bi-trash"></i></button>
                         </td>
                     </tr>

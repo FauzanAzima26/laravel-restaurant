@@ -68,7 +68,7 @@
                         </svg>
                     </span>
                 </span>
-                <div class="multi-level collapse {{ request()->routeIs('menu.*') ? 'show' : '' }}" role="list"
+                <div class="multi-level collapse {{ request()->routeIs('menu.*','chef.*','event.*') ? 'show' : '' }}" role="list"
                     id="submenu-pages" aria-expanded="false">
                     <ul class="flex-column nav">
                         <li class="nav-item {{ request()->routeIs('menu.*') ? 'active' : '' }}">

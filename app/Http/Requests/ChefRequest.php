@@ -21,8 +21,9 @@ class ChefRequest extends FormRequest
      */
     public function rules(): array
     {
+        $routeId = $this->route('chef');
         return [
-            'name' => 'required|min:3|unique:chefs,name',
+            'name' => 'required|min:3|unique:chefs,name,' . $routeId . ',uuid',
             'position' => 'required|min:3',
             'description' => 'required|min:3',
             'insta_link' => 'required|min:3',
