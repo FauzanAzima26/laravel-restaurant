@@ -109,16 +109,16 @@
                         </svg>
                     </span>
                 </span>
-                <div class="multi-level collapse " role="list"
+                <div class="multi-level collapse {{ request()->routeIs('video.*','image.*') ? 'show' : '' }}" role="list"
                     id="submenu-gallery" aria-expanded="false">
                     <ul class="flex-column nav">
-                        <li class="nav-item">
+                        <li class="nav-item {{ request()->routeIs('image.*') ? 'active' : '' }}">
                             <a class="nav-link" href="{{route('image.index')}}">
                                 <span class="sidebar-text">Image</span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{asset('backend')}}/pages/examples/sign-up.html">
+                        <li class="nav-item {{request()->routeIs('video.*') ? 'active' : ''}}">
+                            <a class="nav-link" href="{{route('video.index')}}">
                                 <span class="sidebar-text">Video</span>
                             </a>
                         </li>

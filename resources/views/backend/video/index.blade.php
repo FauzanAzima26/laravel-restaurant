@@ -18,15 +18,15 @@
     </nav>
     <div class="d-flex justify-content-between w-100 flex-wrap">
         <div class="mb-3 mb-lg-0">
-            <h1 class="h4">Image</h1>
+            <h1 class="h4">Video</h1>
             <p class="mb-0">Dozens of reusable components built to provide buttons, alerts, popovers, and more.</p>
         </div>
         <div>
-            <a href="{{route('image.create')}}" class="btn btn-outline-gray-600 d-inline-flex align-items-center">
+            <a href="{{route('video.create')}}" class="btn btn-outline-gray-600 d-inline-flex align-items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill me-2" viewBox="0 0 16 16">
                     <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z" />
                 </svg>
-                Add image
+                Video
             </a>
         </div>
     </div>
@@ -42,35 +42,42 @@
                         <th class="border-0 text-center">Name</th>
                         <th class="border-0 text-center">Slug</th>
                         <th class="border-0 text-center">description</th>
-                        <th class="border-0 text-center">Image</th>
+                        <th class="border-0 text-center">Video</th>
                         <th class="border-0 text-center" width="12%">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <!-- Item -->
-                    @foreach ($images as $item)
+                    @forelse ($videos as $item)
 
                     <tr>
-                        <td>{{($images->currentPage() - 1 ) * $images->perPage() + $loop->iteration}}</td>
-                        <td>{{$item->name}}</td>
+                        <td>{{($videos->currentPage() - 1 ) * $videos->perPage() + $loop->iteration}}</td>
+                        <td>{{$item->title}}</td>
                         <td>{{$item->slug}}</td>
                         <td>{{Str::limit($item->description, 25, '...')}}</td>
                         <td class="text-center">
-                            <img src="{{Storage::url($item->file)}}" width="100" height="100" target="_blank">
+                            <video width="200" height="150" controls>
+                                <source src="{{Storage::url($item->video)}}">
+                                Your browser does not support the video tag.
+                            </video>
                         </td>
                         <td class="text-center">
-                            <a href="{{route('image.show', $item->uuid)}}" class="btn btn-sm btn-primary" title="View"><i class="bi bi-eye"></i></a>
-                            <a href="{{route('image.edit', $item->uuid)}}" class="btn btn-sm btn-warning" title="Edit"><i class="bi bi-pencil-square"></i></a>
-                            <button class="btn btn-sm btn-danger" title="Delete" onclick="deleteImage(this)" data-uuid="{{$item->uuid}}"><i class="bi bi-trash"></i></button>
+                            <a href="{{route('video.show', $item->uuid)}}" class="btn btn-sm btn-primary" title="View"><i class="bi bi-eye"></i></a>
+                            <a href="{{route('video.edit', $item->uuid)}}" class="btn btn-sm btn-warning" title="Edit"><i class="bi bi-pencil-square"></i></a>
+                            <button class="btn btn-sm btn-danger" title="Delete" onclick="deleteVideo(this)" data-uuid="{{$item->uuid}}"><i class="bi bi-trash"></i></button>
                         </td>
                     </tr>
 
-                    @endforeach
+                    @empty
+                    <tr>
+                        <td colspan="7" class="text-center">No image found</td>
+                    </tr>
+                    @endforelse
                     <!-- End of Item -->
                 </tbody>
             </table>
-            <div class="mt-3">
-                {{$images->links()}}
+            <div>
+                {{$videos->links()}}
             </div>
         </div>
     </div>
@@ -81,7 +88,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-    const deleteImage = (e) => {
+    const deleteVideo = (e) => {
         let uuid = e.getAttribute('data-uuid')
 
         Swal.fire({
@@ -96,7 +103,7 @@
             if (result.value) {
                 $.ajax({
                     type: "DELETE",
-                    url: `/image/${uuid}`,
+                    url: `/video/${uuid}`,
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
@@ -105,13 +112,13 @@
                             title: "Deleted!",
                             text: "data.message",
                             icon: "success",
-                            timer: 2500,
+                            // timer: 2500,
                             timerConfirmButton: false,
                         });
 
                         window.location.reload();
                     },
-                    error:function(data){
+                    error: function(data) {
                         Swal.fire({
                             title: "Failed!",
                             text: "Your file has not deleted.",

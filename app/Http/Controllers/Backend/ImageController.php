@@ -54,7 +54,9 @@ class ImageController extends Controller
      */
     public function show(string $id)
     {
-        return 'detail';
+        return view('backend.image.detail', [
+            'image' => $this->imageService->selectBy('uuid', $id)
+        ]);
     }
 
     public function edit(string $uuid)
