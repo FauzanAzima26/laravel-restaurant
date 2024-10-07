@@ -81,8 +81,8 @@
                                 <span class="sidebar-text">Chef</span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{asset('backend')}}/pages/examples/forgot-password.html">
+                        <li class="nav-item {{request()->routeIs('event.*') ? 'active' : ''}}">
+                            <a class="nav-link" href="{{route('event.index')}}">
                                 <span class="sidebar-text">Event</span>
                             </a>
                         </li>
