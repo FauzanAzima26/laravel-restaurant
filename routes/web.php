@@ -7,10 +7,9 @@ use App\Http\Controllers\Backend\eventController;
 use App\Http\Controllers\Backend\MenuController;
 use App\Http\Controllers\Backend\ImageController;
 use App\Http\Controllers\Backend\VideoController;
+use App\Http\Controllers\Frontend\mainController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', mainController::class);
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
