@@ -54,8 +54,13 @@
                     @enderror
                 </div>
                 <div class="col-md-6">
-                    <label for="name" class="form-label">Position</label>
-                    <input type="text" class="form-control @error('position') is-invalid @enderror" name="position" id="position" aria-describedby="helpId" value="{{old('position')}}">
+                <label for="position" class="form-label">Position</label>
+                    <select name="position" id="position" class="form-select @error('position') is-invalid @enderror">
+                        <option value="">-- Select position --</option>
+                        <option value="Executive chef" {{old('position') == 'Executive chef' ? 'selected' : ''}}>Executive chef</option>
+                        <option value="Sous chef" {{old('position') == 'Sous chef' ? 'selected' : ''}}>Sous chef</option>
+                        <option value="Senior chef" {{old('position') == 'Senior chef' ? 'selected' : ''}}>Senior chef</option>
+                    </select>
                     @error('position')
                     <span class=" invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>

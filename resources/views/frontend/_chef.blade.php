@@ -22,7 +22,7 @@
                         </div>
                         <div class="member-info">
                             <h4>{{$chef->name}}</h4>
-                            <span>{{$chef->position}}</span>
+                            <span class="bg-danger text-white col-4 mx-auto">{{$chef->position}}</span>
                             <p>{{$chef->description}}</p>
                         </div>
                     </div>
