@@ -10,7 +10,7 @@ class Transaction extends Model
 {
     use HasFactory;
 
-    protected $guarded = [
+    protected $fillable = [
         'uuid',
         'type',
         'code',
@@ -20,16 +20,17 @@ class Transaction extends Model
         'date',
         'time',
         'people',
-        'file',
         'amount',
+        'file',
         'status',
-        'message',
+        'message'
     ];
 
-    public static function boot()
+    public static function booted()
     {
-        Transaction::creating(function ($model) {
+        static::creating(function ($model) {
             $model->uuid = Str::uuid();
+            $model->code = Str::random(6);
         });
     }
 }

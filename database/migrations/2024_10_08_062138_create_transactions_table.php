@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('people');
             $table->string('file');
             $table->string('amount');
-            $table->enum('status', ['pending', 'success', 'failed']);
+            $table->enum('status', ['pending', 'success', 'failed'])->default('pending');
             $table->text('message')->nullable();
             $table->timestamps();
         });

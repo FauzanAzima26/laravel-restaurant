@@ -7,9 +7,12 @@ use App\Http\Controllers\Backend\eventController;
 use App\Http\Controllers\Backend\MenuController;
 use App\Http\Controllers\Backend\ImageController;
 use App\Http\Controllers\Backend\VideoController;
+use App\Http\Controllers\Frontend\bookingController;
 use App\Http\Controllers\Frontend\mainController;
 
 Route::get('/', mainController::class);
+
+Route::post('booking', [bookingController::class, 'store'])->name('booking');
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {

@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Index - Yummy Bootstrap Template</title>
-    <meta name="description" content="">
+    <title>Index - Yummy Restaurant</title>
+    <meta name="description" content="Yummy Restaurant">
     <meta name="keywords" content="">
 
     <!-- Favicons -->
@@ -29,6 +29,9 @@
     <!-- Main CSS File -->
     <link href="{{asset('frontend')}}/css/main.css" rel="stylesheet">
 
+    <!-- sweetalert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- =======================================================
   * Template Name: Yummy
   * Template URL: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/
@@ -39,6 +42,8 @@
 </head>
 
 <body class="index-page">
+
+    <div class="swal" data-swal="{{ session('success') }}"></div>
 
     <header id="header" class="header d-flex align-items-center sticky-top">
         <div class="container position-relative d-flex align-items-center justify-content-between">
@@ -472,7 +477,7 @@
 
         <!-- Events Section -->
         @include('frontend._event')
-<!-- /Events Section -->
+        <!-- /Events Section -->
 
         <!-- Chefs Section -->
         @include('frontend._chef')
@@ -547,12 +552,12 @@
         <!-- /Book A Table Section -->
 
         <!-- Gallery Section -->
-         @include('frontend._gallery')
-<!-- /Gallery Section -->
+        @include('frontend._gallery')
+        <!-- /Gallery Section -->
 
         <!-- Contact Section -->
         @include('frontend._contact')
-<!-- /Contact Section -->
+        <!-- /Contact Section -->
 
         <!-- modal book -->
         @include('frontend._modalBook')
@@ -640,6 +645,24 @@
 
     <!-- Main JS File -->
     <script src="{{asset('frontend')}}/js/main.js"></script>
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- sweetalert -->
+    <script>
+        const swal = $('.swal').data('swal');
+
+        if (swal) {
+            Swal.fire({
+                title: 'Success!',
+                text: swal,
+                icon: 'success',
+                timer: 2500,
+                showConfirmButton: false
+            })
+        }
+    </script>
 
 </body>
 
