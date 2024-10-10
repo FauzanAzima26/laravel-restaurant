@@ -143,6 +143,8 @@
     <!-- Volt JS -->
     <script src="{{asset('backend')}}/assets/js/volt.js"></script>
 
+    @stack('js')
+
 </body>
 
 </html>

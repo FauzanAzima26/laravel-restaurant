@@ -13,16 +13,16 @@
                 </a>
             </li>
             <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Gallery image</li>
+            <li class="breadcrumb-item active" aria-current="page">Master chef</li>
         </ol>
     </nav>
     <div class="d-flex justify-content-between w-100 flex-wrap">
         <div class="mb-3 mb-lg-0">
-            <h1 class="h4">Add Menu</h1>
+            <h1 class="h4">Add chef</h1>
             <p class="mb-0">Dozens of reusable components built to provide buttons, alerts, popovers, and more.</p>
         </div>
         <div>
-            <a href="{{route('menu.index')}}" class="btn btn-outline-gray-600 d-inline-flex align-items-center">
+            <a href="{{route('chef.index')}}" class="btn btn-outline-gray-600 d-inline-flex align-items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-backspace-fill me-2" viewBox="0 0 16 16">
                     <path d="M15.683 3a2 2 0 0 0-2-2h-7.08a2 2 0 0 0-1.519.698L.241 7.35a1 1 0 0 0 0 1.302l4.843 5.65A2 2 0 0 0 6.603 15h7.08a2 2 0 0 0 2-2zM5.829 5.854a.5.5 0 1 1 .707-.708l2.147 2.147 2.146-2.147a.5.5 0 1 1 .707.708L9.39 8l2.146 2.146a.5.5 0 0 1-.707.708L8.683 8.707l-2.147 2.147a.5.5 0 0 1-.707-.708L7.976 8z" />
                 </svg>
@@ -34,18 +34,18 @@
 
 
 @if (session('error'))
-        <div class="alert alert-danger">
-            {{ session('error') }}
-        </div>
-    @endif
+<div class="alert alert-danger">
+    {{ session('error') }}
+</div>
+@endif
 
 <div class="card border-0 shadow mb-4">
     <div class="card-body">
-        <form action="{{route('menu.store')}}" method="post" enctype="multipart/form-data">
+        <form action="{{route('chef.store')}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <label for="name" class="form-label">Menu</label>
+                    <label for="name" class="form-label">Name</label>
                     <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" aria-describedby="helpId" value="{{old('name')}}">
                     @error('name')
                     <span class=" invalid-feedback" role="alert">
@@ -54,14 +54,14 @@
                     @enderror
                 </div>
                 <div class="col-md-6">
-                    <label for="categories_id" class="form-label">Category</label>
-                    <select name="categories_id" id="categories_id" class="form-select @error('categories_id') is-invalid @enderror">
-                        <option value="">-- select category --</option>
-                        @foreach ($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->title }}</option>
-                        @endforeach
+                <label for="position" class="form-label">Position</label>
+                    <select name="position" id="position" class="form-select @error('position') is-invalid @enderror">
+                        <option value="">-- Select position --</option>
+                        <option value="Executive chef" {{old('position') == 'Executive chef' ? 'selected' : ''}}>Executive chef</option>
+                        <option value="Sous chef" {{old('position') == 'Sous chef' ? 'selected' : ''}}>Sous chef</option>
+                        <option value="Senior chef" {{old('position') == 'Senior chef' ? 'selected' : ''}}>Senior chef</option>
                     </select>
-                    @error('categories_id')
+                    @error('position')
                     <span class=" invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
@@ -82,29 +82,24 @@
 
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <label for="price" class="form-label">Price</label>
-                    <input type="number" min="0"  id="price" class="form-control @error('price') is-invalid @enderror" name="price" id="" aria-describedby="helpId" value="{{old('price')}}"">
-                @error('price')
+                    <label for="price" class="form-label">Instagram link</label>
+                    <input type="text" id="insta_link" class="form-control @error('insta_link') is-invalid @enderror" name="insta_link" id="" aria-describedby="helpId" value="{{old('insta_link')}}"">
+                @error('insta_link')
                     <span class=" invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                     </span>
                     @enderror
                 </div>
                 <div class="col-md-6">
-                    <label for="status" class="form-label">status</label>
-                    <select name="status" id="status" class="form-select @error('status') is-invalid @enderror">
-                        <option value="">-- select status --</option>
-                        <option value="active">Active</option>
-                        <option value="inactive">Inactive</option>
-                    </select>
-                    @error('status')
-                <span class="invalid-feedback" role="alert">
+                    <label for="price" class="form-label">Linked link</label>
+                    <input type="text" id="linked_link" class="form-control @error('linked_link') is-invalid @enderror" name="linked_link" id="" aria-describedby="helpId" value="{{old('linked_link')}}"">
+                @error('linked_link')
+                    <span class=" invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
-                </span>
-                @enderror
+                    </span>
+                    @enderror
                 </div>
             </div>
-
             <div class="mb-3">
                 <label for="image" class="form-label">Image</label>
                 <input type="file" name="image" id="image" accept="image/*" class="form-control @error('image') is-invalid @enderror">
