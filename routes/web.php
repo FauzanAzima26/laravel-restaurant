@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('event', eventController::class)->names('event');
 
-    Route::get('transaction/download', [transactionController::class, 'download'])->name('transaction.download');
+    Route::post('transaction/download', [transactionController::class, 'download'])->name('transaction.download');
     Route::resource('transaction', transactionController::class)
     ->except(['edit', 'create', 'store']) 
     ->names('transaction');

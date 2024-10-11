@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Exports\transactionExport;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Mail\bookingMailConfirm;
@@ -73,7 +74,7 @@ class transactionController extends Controller
         ]);
 
         try {
-            return Excel::download(new TransactionExport($data['start_date'], $data['end_date']), 'transactions.xlsx');
+            return Excel::download(new transactionExport($data['start_date'], $data['end_date']), 'transactions.xlsx');
         } catch (\Exception $error) {
             return redirect()->back()->with('error', $error->getMessage());
         }
