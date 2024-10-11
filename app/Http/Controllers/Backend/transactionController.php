@@ -45,7 +45,7 @@ class transactionController extends Controller
             // send email
             if($transaction->status !== 'failed'){
                 Mail::to($transaction->email)
-                    ->cc('operator@gmail.com')
+                    ->cc('fauzannazimaaa123@gmail.com')
                     ->send(new bookingMailConfirm($transaction));
             }
 
