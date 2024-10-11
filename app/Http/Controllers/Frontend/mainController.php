@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\services\chefService;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Review;
 
 use function Pest\Laravel\get;
 
@@ -56,6 +57,10 @@ class mainController extends Controller
         ->orderBy('id', 'desc')
         ->get();
 
+        $reviews = Review::with('transaction:id,code,name')
+        ->orderBy('id', 'desc')
+        ->get();
+
         return view('frontend.index', [
             'chefs' => $chefs,
             'menuStarters' => $this->getMenu(1),
@@ -64,7 +69,8 @@ class mainController extends Controller
             'menuDinner' => $this->getMenu(4),
             'events' => $events,
             'galleries' => $gallery,
-            'videos' => $videos
+            'videos' => $videos,
+            'reviews' => $reviews
         ]);
     }
 }

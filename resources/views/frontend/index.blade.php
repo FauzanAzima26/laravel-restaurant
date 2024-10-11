@@ -64,6 +64,7 @@
                     <li><a href="#chefs">Chefs</a></li>
                     <li><a href="#gallery">Gallery</a></li>
                     <li><a href="#contact">Contact</a></li>
+                    <li><a href="#review">Review</a></li>
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
@@ -322,159 +323,6 @@
 
         </section><!-- /Menu Section -->
 
-        <!-- Testimonials Section -->
-        <section id="testimonials" class="testimonials section light-background">
-
-            <!-- Section Title -->
-            <div class="container section-title" data-aos="fade-up">
-                <h2>TESTIMONIALS</h2>
-                <p>What Are They <span class="description-title">Saying About Us</span></p>
-            </div><!-- End Section Title -->
-
-            <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-                <div class="swiper init-swiper">
-                    <script type="application/json" class="swiper-config">
-            {
-              "loop": true,
-              "speed": 600,
-              "autoplay": {
-                "delay": 5000
-              },
-              "slidesPerView": "auto",
-              "pagination": {
-                "el": ".swiper-pagination",
-                "type": "bullets",
-                "clickable": true
-              }
-            }
-          </script>
-                    <div class="swiper-wrapper">
-
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <div class="row gy-4 justify-content-center">
-                                    <div class="col-lg-6">
-                                        <div class="testimonial-content">
-                                            <p>
-                                                <i class="bi bi-quote quote-icon-left"></i>
-                                                <span>Proin iaculis purus consequat sem cure digni ssim donec porttitora
-                                                    entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam
-                                                    eget nibh et. Maecen aliquam, risus at semper.</span>
-                                                <i class="bi bi-quote quote-icon-right"></i>
-                                            </p>
-                                            <h3>Saul Goodman</h3>
-                                            <h4>Ceo &amp; Founder</h4>
-                                            <div class="stars">
-                                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                                    class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                                    class="bi bi-star-fill"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-2 text-center">
-                                        <img src="{{asset('frontend')}}/img/testimonials/testimonials-1.jpg"
-                                            class="img-fluid testimonial-img" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!-- End testimonial item -->
-
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <div class="row gy-4 justify-content-center">
-                                    <div class="col-lg-6">
-                                        <div class="testimonial-content">
-                                            <p>
-                                                <i class="bi bi-quote quote-icon-left"></i>
-                                                <span>Export tempor illum tamen malis malis eram quae irure esse labore
-                                                    quem cillum quid cillum eram malis quorum velit fore eram velit sunt
-                                                    aliqua noster fugiat irure amet legam anim culpa.</span>
-                                                <i class="bi bi-quote quote-icon-right"></i>
-                                            </p>
-                                            <h3>Sara Wilsson</h3>
-                                            <h4>Designer</h4>
-                                            <div class="stars">
-                                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                                    class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                                    class="bi bi-star-fill"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-2 text-center">
-                                        <img src="{{asset('frontend')}}/img/testimonials/testimonials-2.jpg"
-                                            class="img-fluid testimonial-img" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!-- End testimonial item -->
-
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <div class="row gy-4 justify-content-center">
-                                    <div class="col-lg-6">
-                                        <div class="testimonial-content">
-                                            <p>
-                                                <i class="bi bi-quote quote-icon-left"></i>
-                                                <span>Enim nisi quem export duis labore cillum quae magna enim sint
-                                                    quorum nulla quem veniam duis minim tempor labore quem eram duis
-                                                    noster aute amet eram fore quis sint minim.</span>
-                                                <i class="bi bi-quote quote-icon-right"></i>
-                                            </p>
-                                            <h3>Jena Karlis</h3>
-                                            <h4>Store Owner</h4>
-                                            <div class="stars">
-                                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                                    class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                                    class="bi bi-star-fill"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-2 text-center">
-                                        <img src="{{asset('frontend')}}/img/testimonials/testimonials-3.jpg"
-                                            class="img-fluid testimonial-img" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!-- End testimonial item -->
-
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <div class="row gy-4 justify-content-center">
-                                    <div class="col-lg-6">
-                                        <div class="testimonial-content">
-                                            <p>
-                                                <i class="bi bi-quote quote-icon-left"></i>
-                                                <span>Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos
-                                                    export minim fugiat minim velit minim dolor enim duis veniam ipsum
-                                                    anim magna sunt elit fore quem dolore labore illum veniam.</span>
-                                                <i class="bi bi-quote quote-icon-right"></i>
-                                            </p>
-                                            <h3>John Larson</h3>
-                                            <h4>Entrepreneur</h4>
-                                            <div class="stars">
-                                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                                    class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                                    class="bi bi-star-fill"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-2 text-center">
-                                        <img src="{{asset('frontend')}}/img/testimonials/testimonials-4.jpg"
-                                            class="img-fluid testimonial-img" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!-- End testimonial item -->
-
-                    </div>
-                    <div class="swiper-pagination"></div>
-                </div>
-
-            </div>
-
-        </section><!-- /Testimonials Section -->
-
         <!-- Events Section -->
         @include('frontend._event')
         <!-- /Events Section -->
@@ -482,74 +330,6 @@
         <!-- Chefs Section -->
         @include('frontend._chef')
         <!-- /Chefs Section -->
-
-        <!-- Book A Table Section -->
-        <section id="book-a-table" class="book-a-table section">
-
-            <!-- Section Title -->
-            <div class="container section-title" data-aos="fade-up">
-                <h2>Book A Table</h2>
-                <p><span>Book Your</span> <span class="description-title">Stay With Us<br></span></p>
-            </div><!-- End Section Title -->
-
-            <div class="container">
-
-                <div class="row g-0" data-aos="fade-up" data-aos-delay="100">
-
-                    <div class="col-lg-4 reservation-img"
-                        style="background-image: url({{asset('frontend')}}/img/reservation.jpg);">
-                    </div>
-
-                    <div class="col-lg-8 d-flex align-items-center reservation-form-bg" data-aos="fade-up"
-                        data-aos-delay="200">
-                        <form action="forms/book-a-table.php" method="post" role="form" class="php-email-form">
-                            <div class="row gy-4">
-                                <div class="col-lg-4 col-md-6">
-                                    <input type="text" name="name" class="form-control" id="name"
-                                        placeholder="Your Name" required="">
-                                </div>
-                                <div class="col-lg-4 col-md-6">
-                                    <input type="email" class="form-control" name="email" id="email"
-                                        placeholder="Your Email" required="">
-                                </div>
-                                <div class="col-lg-4 col-md-6">
-                                    <input type="text" class="form-control" name="phone" id="phone"
-                                        placeholder="Your Phone" required="">
-                                </div>
-                                <div class="col-lg-4 col-md-6">
-                                    <input type="date" name="date" class="form-control" id="date" placeholder="Date"
-                                        required="">
-                                </div>
-                                <div class="col-lg-4 col-md-6">
-                                    <input type="time" class="form-control" name="time" id="time" placeholder="Time"
-                                        required="">
-                                </div>
-                                <div class="col-lg-4 col-md-6">
-                                    <input type="number" class="form-control" name="people" id="people"
-                                        placeholder="# of people" required="">
-                                </div>
-                            </div>
-
-                            <div class="form-group mt-3">
-                                <textarea class="form-control" name="message" rows="5" placeholder="Message"></textarea>
-                            </div>
-
-                            <div class="text-center mt-3">
-                                <div class="loading">Loading</div>
-                                <div class="error-message"></div>
-                                <div class="sent-message">Your booking request was sent. We will call back or send an
-                                    Email to confirm your reservation. Thank you!</div>
-                                <button type="submit">Book a Table</button>
-                            </div>
-                        </form>
-                    </div><!-- End Reservation Form -->
-
-                </div>
-
-            </div>
-
-        </section>
-        <!-- /Book A Table Section -->
 
         <!-- Gallery Section -->
         @include('frontend._gallery')
@@ -561,7 +341,11 @@
 
         <!-- modal book -->
         @include('frontend._modalBook')
-        <!-- End modal book -->
+        <!-- End modal book--)
+        
+        <!-- review section -->
+        @include('frontend._review')
+        <!-- End review section -->
     </main>
 
     <footer id="footer" class="footer dark-background">
