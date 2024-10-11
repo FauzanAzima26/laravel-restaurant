@@ -1,15 +1,15 @@
 <section id="gallery" class="gallery section light-background">
 
-    <!-- Section Title -->
-    <div class="container section-title" data-aos="fade-up">
-        <h2>Gallery</h2>
-        <p><span>Check</span> <span class="description-title">Our Gallery</span></p>
-    </div><!-- End Section Title -->
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Gallery</h2>
+    <p><span>Check</span> <span class="description-title">Our Gallery</span></p>
+  </div><!-- End Section Title -->
 
-    <div class="container" data-aos="fade-up" data-aos-delay="100">
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-        <div class="swiper init-swiper">
-            <script type="application/json" class="swiper-config">
+    <div class="swiper init-swiper">
+      <script type="application/json" class="swiper-config">
 {
   "loop": true,
   "speed": 600,
@@ -39,23 +39,32 @@
   }
 }
 </script>
-            <div class="swiper-wrapper align-items-center">
+      <div class="swiper-wrapper align-items-center">
 
-            @foreach ($galleries as $gallery)
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery"
-                        href="{{Storage::url($gallery->file)}}"><img src="{{asset('Storage/' . $gallery->file ) }}"
-                            class="img-fluid" alt=""></a>
-                </div>
-            @endforeach
-          
-            </div>
-            
-        <div class="swiper-pagination"></div>
-        </div>
+        @foreach ($galleries as $gallery)
+      <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery"
+        href="{{Storage::url($gallery->file)}}"><img src="{{asset('Storage/' . $gallery->file) }}"
+          class="img-fluid" alt=""></a>
+      </div>
+    @endforeach
+        @foreach ($videos as $video)
+      <div class="swiper-slide">
+        <video width="100%" height="auto" controls>
+        <source src="{{Storage::url($video->video)}}" type="video/mp4">
+        Your browser does not support the video tag.
+        </video>
+      </div>
+    @endforeach
 
 
+      </div>
+
+      <div class="swiper-pagination"></div>
     </div>
 
-    </div>
+
+  </div>
+
+  </div>
 
 </section>

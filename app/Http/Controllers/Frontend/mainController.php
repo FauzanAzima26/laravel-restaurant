@@ -36,6 +36,7 @@ class mainController extends Controller
             'insta_link',
             'linked_link'
         ]);
+        
         $events = DB::table('events')
         ->orderBy('id', 'desc')
         ->where('status', 'available')
@@ -46,7 +47,12 @@ class mainController extends Controller
             'description',
             'status',
         ]);
+
         $gallery = DB::table('images')
+        ->orderBy('id', 'desc')
+        ->get();
+
+        $videos = DB::table('videos')
         ->orderBy('id', 'desc')
         ->get();
 
@@ -57,7 +63,8 @@ class mainController extends Controller
             'menuLunch' => $this->getMenu(3),
             'menuDinner' => $this->getMenu(4),
             'events' => $events,
-            'galleries' => $gallery
+            'galleries' => $gallery,
+            'videos' => $videos
         ]);
     }
 }
