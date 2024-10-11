@@ -124,6 +124,8 @@
 
     @include('backend.transaction._modalConfirm')
 
+    @include('backend.transaction._modalDownload')
+
 @endsection
 
 @push('js')

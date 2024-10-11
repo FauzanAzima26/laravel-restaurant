@@ -8,6 +8,7 @@ use App\Mail\bookingMailConfirm;
 use App\Http\services\fileService;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
+use Maatwebsite\Excel\Facades\Excel;
 
 class transactionController extends Controller
 {
@@ -62,5 +63,19 @@ class transactionController extends Controller
         return response()->json([
             'message' => 'Transaction deleted successfully'
         ]);
+    }
+
+    public function download(Request $request){
+
+        $data = $request->validate([
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after_or_equal:start_date'
+        ]);
+
+        try {
+            return Excel::download(new TransactionExport($data['start_date'], $data['end_date']), 'transactions.xlsx');
+        } catch (\Exception $error) {
+            return redirect()->back()->with('error', $error->getMessage());
+        }
     }
 }

@@ -56,10 +56,10 @@
                 </div>
                 <div class="col-md-6">
                     <label for="categories_id" class="form-label">Category</label>
-                    <select name="categories_id" id="categories_id" class="form-select @error('categories_id') is-invalid @enderror">
+                    <select name="categories_id" id="categories_id" class="form-select @error('categories_id') is-invalid @enderror" value="{{old('categories_id', $menu->categories_id)}}">
                         <option value="">-- select category --</option>
                         @foreach ($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->title }}</option>
+                        <option value="{{ $category->id }}" {{ $category->id == $menu->categories_id ? 'selected' : '' }}>{{ $category->title }}</option>
                         @endforeach
                     </select>
                     @error('categories_id')
@@ -94,8 +94,8 @@
                     <label for="status" class="form-label">status</label>
                     <select name="status" id="status" class="form-select @error('status') is-invalid @enderror">
                         <option value="">-- select status --</option>
-                        <option value="active">Active</option>
-                        <option value="inactive">Inactive</option>
+                        <option value="active" {{'active' == 'active' ? 'selected' : '' }}>Active</option>
+                        <option value="inactive" {{'inactive' == 'inactive' ? 'selected' : '' }}>Inactive</option>
                     </select>
                     @error('status')
                 <span class="invalid-feedback" role="alert">
