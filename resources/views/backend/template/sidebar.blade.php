@@ -137,8 +137,8 @@
                 </a>
             </li>
 
-            <li class="nav-item">
-                <a href="https://demo.themesberg.com/volt-pro/pages/calendar.html" target="_blank" class="nav-link d-flex justify-content-between">
+            <li class="nav-item {{request()->routeIs('review.*') ? 'active' : ''}}">
+                <a href="{{route('review.index')}}" class="nav-link d-flex justify-content-between">
                     <span>
                         <span class="sidebar-icon">
                             <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">

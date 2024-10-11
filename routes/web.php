@@ -8,12 +8,15 @@ use App\Http\Controllers\Backend\eventController;
 use App\Http\Controllers\Backend\ImageController;
 use App\Http\Controllers\Backend\VideoController;
 use App\Http\Controllers\Frontend\mainController;
+use App\Http\Controllers\Backend\reviewController;
 use App\Http\Controllers\Frontend\bookingController;
 use App\Http\Controllers\Backend\transactionController;
+use App\Http\Controllers\Frontend\frontReviewController;
 
 Route::get('/', mainController::class);
 
 Route::post('booking', [bookingController::class, 'store'])->name('booking');
+Route::post('review', [frontReviewController::class, 'store'])->name('front.review');
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
@@ -34,6 +37,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('transaction', transactionController::class)
     ->except(['edit', 'create', 'store']) 
     ->names('transaction');
+
+    Route::resource('review', reviewController::class)->names('review')
+    ->only(['index', 'destroy', 'show']);
 
 
 });

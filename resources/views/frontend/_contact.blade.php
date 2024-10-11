@@ -58,33 +58,63 @@
 
         </div>
 
-        <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up">
-            <div class="row gy-4">
+        <form action="{{ route('front.review') }}" class="mt-5" method="post">
+            @csrf
 
-                <div class="col-md-6">
-                    <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
-                </div>
+            <div class="mb-3">
+                <label for="code">Code Transaction</label>
+                <input type="text" name="code" id="code" class="form-control @error('code')
+                    'is-invalid'
+                @enderror" value="{{ old('code') }}">
 
-                <div class="col-md-6 ">
-                    <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
-                </div>
+                @error('code')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
 
-                <div class="col-md-12">
-                    <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
-                </div>
+            <div class="mb-3">
+                <label for="rate">Rating <i class="bi bi-star"></i></label>
+                <select name="rate" id="rate" class="form-select">
+                    <option value="" hidden>-- choose review</option>
+                    <option value="1">1</option>
+                    <option value="2">
+                        2
+                    </option>
+                    <option value="3">
+                        3
+                    </option>
+                    <option value="4">
+                        4
+                    </option>
+                    <option value="5">
+                        5
+                    </option>
+                </select>
 
-                <div class="col-md-12">
-                    <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
-                </div>
+                @error('rate')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
 
-                <div class="col-md-12 text-center">
-                    <div class="loading">Loading</div>
-                    <div class="error-message"></div>
-                    <div class="sent-message">Your message has been sent. Thank you!</div>
+            <div class="mb-3">
+                <label for="comment">Comment</label>
+                <textarea name="comment" id="comment" cols="5" rows="5" class="form-control @error('code')
+                    'is-invalid'
+                @enderror">{{ old('comment') }}</textarea>
 
-                    <button type="submit">Send Message</button>
-                </div>
+                @error('code')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
 
+            <div class="float-end">
+                <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </form><!-- End Contact Form -->
 
