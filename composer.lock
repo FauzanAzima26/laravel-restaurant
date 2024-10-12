@@ -4,8 +4,61 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "753ce3730a9b1b8c1d42fc041a3513e6",
+    "content-hash": "3b99173da6f20bc137148571cc1331e7",
     "packages": [
+        {
+            "name": "arielmejiadev/larapex-charts",
+            "version": "2.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ArielMejiaDev/larapex-charts.git",
+                "reference": "821f9a99c47e51f7306d04c2eeb7c6c3ee9f1e1b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ArielMejiaDev/larapex-charts/zipball/821f9a99c47e51f7306d04c2eeb7c6c3ee9f1e1b",
+                "reference": "821f9a99c47e51f7306d04c2eeb7c6c3ee9f1e1b",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^4.4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "ArielMejiaDev\\LarapexCharts\\LarapexChartsServiceProvider"
+                    ],
+                    "aliases": {
+                        "LarapexChart": "ArielMejiaDev\\LarapexCharts\\Facades\\LarapexChart"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ArielMejiaDev\\LarapexCharts\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ArielMejiaDev",
+                    "email": "arielmejiadev@gmail.com"
+                }
+            ],
+            "description": "Package to provide easy api to build apex charts on Laravel",
+            "support": {
+                "issues": "https://github.com/ArielMejiaDev/larapex-charts/issues",
+                "source": "https://github.com/ArielMejiaDev/larapex-charts/tree/2.1.1"
+            },
+            "time": "2021-06-24T16:16:54+00:00"
+        },
         {
             "name": "brick/math",
             "version": "0.12.1",
@@ -2183,6 +2236,71 @@
                 }
             ],
             "time": "2024-10-10T12:33:01+00:00"
+        },
+        {
+            "name": "marineusde/larapex-charts",
+            "version": "1.4.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/marineusde/larapex-charts.git",
+                "reference": "f05da606a7bd5b4d6c986842c1f23852fedee880"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/marineusde/larapex-charts/zipball/f05da606a7bd5b4d6c986842c1f23852fedee880",
+                "reference": "f05da606a7bd5b4d6c986842c1f23852fedee880",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "illuminate/support": "^10.48|^11.0",
+                "php": "^8.2"
+            },
+            "require-dev": {
+                "larastan/larastan": "^2.9",
+                "laravel/pint": "^1.15",
+                "nunomaduro/collision": "^7.10",
+                "orchestra/testbench": "^8.10",
+                "phpunit/phpunit": "^10.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "marineusde\\LarapexCharts\\Providers\\LarapexChartsServiceProvider"
+                    ],
+                    "aliases": {
+                        "LarapexChart": "marineusde\\LarapexCharts\\Facades\\LarapexChart"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "marineusde\\LarapexCharts\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Henning Zimmermann",
+                    "email": "github@marineus.de"
+                }
+            ],
+            "description": "Package to provide easy api to build apex charts on Laravel",
+            "homepage": "https://github.com/marineusde/larapex-charts",
+            "keywords": [
+                "apexcharts",
+                "charts",
+                "larapex"
+            ],
+            "support": {
+                "issues": "https://github.com/marineusde/larapex-charts/issues",
+                "source": "https://github.com/marineusde/larapex-charts/tree/1.4.2"
+            },
+            "time": "2024-07-30T09:48:00+00:00"
         },
         {
             "name": "markbaker/complex",
