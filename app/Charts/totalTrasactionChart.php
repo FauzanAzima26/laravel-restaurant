@@ -5,6 +5,7 @@ namespace App\Charts;
 use marineusde\LarapexCharts\Charts\LineChart AS OriginalLineChart;
 use marineusde\LarapexCharts\Options\XAxisOption;
 
+
 class totalTrasactionChart
 {
     public function build(): OriginalLineChart
