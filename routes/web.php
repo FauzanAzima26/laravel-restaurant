@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\ChefController;
+use App\Http\Controllers\Backend\dashboarController;
 use App\Http\Controllers\Backend\MenuController;
 use App\Http\Controllers\Backend\eventController;
 use App\Http\Controllers\Backend\ImageController;
@@ -19,9 +20,6 @@ Route::post('booking', [bookingController::class, 'store'])->name('booking');
 Route::post('review', [frontReviewController::class, 'store'])->name('front.review');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('backend.dashboard.index');
-    })->name('dashboard');
 
     Route::resource('image', ImageController::class)->names('image');
 
@@ -41,7 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('review', reviewController::class)->names('review')
     ->only(['index', 'destroy', 'show']);
 
-
+    Route::get('/dashboard', [dashboarController::class, 'index'])->name('dashboard');
 });
 
 Auth::routes();
