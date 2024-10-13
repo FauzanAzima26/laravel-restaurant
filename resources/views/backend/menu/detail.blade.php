@@ -36,11 +36,13 @@
                 </tr>
                 <tr>
                     <th>Description</th>
-                    <td> {{ Str::limit($menu->description, 50) }} {{-- truncate to 100 characters --}}
-                        @if (strlen($menu->description) > 50)
-                        <a href="#" data-toggle="modal" data-target="#description-modal-{{ $menu->id }}">Read more</a>
-                        {{-- modal to display full description --}}
-                        @endif
+                    <td> @php
+                            $description = $menu->description;
+                            $charLimit = 50; // Jumlah karakter sebelum new line
+                        @endphp
+                        @for($i = 0; $i < strlen($description); $i += $charLimit)
+                            {{ substr($description, $i, $charLimit) }}<br>
+                        @endfor
                     </td>
                 </tr>
                 <tr>
