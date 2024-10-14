@@ -22,6 +22,11 @@
                 <div class="col-12 d-flex align-items-center justify-content-center">
                     <div class="bg-white shadow border-0 rounded p-4 p-lg-5 w-100 fmxw-500">
                         <h1 class="h3 mb-4">Reset password</h1>
+                        @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
                         <form method="POST" action="{{ route('password.update') }}">
                             @csrf
 

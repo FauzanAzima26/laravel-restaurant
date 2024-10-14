@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpFoundation\Response;
 
 class cekRole
@@ -16,25 +17,28 @@ class cekRole
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check() && Auth::user()->role == 'owner') {
-            // Owner role, restrict actions
-            $this->restrictOwnerActions($request);
+        $user = Auth::user();
+        $role = Session::get('role');
+
+        if ($role === 'owner') {
+            // Ambil nama route yang sedang diakses
+            $currentRouteName = $request->route()->getName();
+            // Daftar halaman yang dibatasi oleh role owner
+            $restrictedPages = [
+                'image.create', 'image.edit', 'image.destroy',
+                'video.create', 'video.edit', 'video.destroy',
+                'menu.create', 'menu.edit', 'menu.destroy',
+                'chef.create', 'chef.edit', 'chef.destroy',
+                'transaction.create', 'transaction.edit', 'transaction.destroy',
+                'event.create', 'event.edit', 'event.destroy',
+                'review.create', 'review.edit', 'review.destroy',
+            ];
+            // Jika nama route yang sedang diakses ada di dalam daftar halaman yang dibatasi, maka kembalikan ke halaman unauthorized
+            if (in_array($currentRouteName, $restrictedPages)) {
+                abort(403); 
+            }
         }
+        // Jika nama route yang sedang diakses tidak ada di dalam daftar halaman yang dibatasi, maka lanjutkan ke proses berikutnya
         return $next($request);
-    }
-    
-    private function restrictOwnerActions(Request $request)
-    {
-        // Restrict actions for owner role
-        if ($request->isMethod('GET')) {
-            // Allow only show and download actions for GET requests
-            return true;
-        } elseif ($request->isMethod('POST') && $request->route()->getName() == 'transaction.download') {
-            // Allow download action for POST requests with transaction/download route
-            return true;
-        } else {
-            // Abort all other requests
-            abort(404);
-        }
     }
 }

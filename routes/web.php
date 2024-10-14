@@ -20,7 +20,7 @@ Route::get('/', mainController::class);
 Route::post('booking', [bookingController::class, 'store'])->name('booking');
 Route::post('front/review', [frontReviewController::class, 'store'])->name('front.review');
 
-Route::middleware([cekRole::class])->group(function () {
+Route::middleware(['auth', cekRole::class])->group(function () {
 
     Route::resource('image', ImageController::class)->names('image');
     Route::resource('menu', MenuController::class)->names('menu');

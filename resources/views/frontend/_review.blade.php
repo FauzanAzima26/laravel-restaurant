@@ -51,14 +51,10 @@
                                     </div>
 
                                 </div>
-                                <!-- <div class="col-lg-2 text-center">
-                                <img src="{{asset('frontend')}}/img/testimonials/testimonials-1.jpg"
-                                    class="img-fluid testimonial-img" alt="">
-                            </div> -->
                             </div>
 
                         </div>
-                    </div><!-- End testimonial item -->
+                    </div>
                 @endforeach
 
             </div>
