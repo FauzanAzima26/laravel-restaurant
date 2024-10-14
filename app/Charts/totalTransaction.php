@@ -5,7 +5,7 @@ namespace App\Charts;
 use App\Models\Transaction;
 use Illuminate\Support\Carbon;
 use marineusde\LarapexCharts\Options\XAxisOption;
-use marineusde\LarapexCharts\Charts\LineChart AS OriginalLineChart;
+use marineusde\LarapexCharts\Charts\LineChart as OriginalLineChart;
 
 class totalTransaction
 {
@@ -26,18 +26,27 @@ class totalTransaction
                 ->whereMonth('created_at', $i)
                 ->where('status', 'failed')
                 ->sum('amount');
+            $total = Transaction::whereYear('created_at', $tahun)
+                ->whereMonth('created_at', $i)
+                ->where('status', '!=', 'failed')
+                ->sum('amount');
+
+            $total_all = $total > $failed ? $total - $failed : 0;
+
             $dataBulan[] = Carbon::create()->month($i)->format('F');
             $dataPending[] = $pending;
             $dataSuccess[] = $success;
             $dataFailed[] = $failed;
+            $dataTotal[] = $total_all;
         }
 
         return (new OriginalLineChart)
-            ->setTitle('Total Transaksi')
+            ->setTitle('Total Transaksi Bulanan')
             ->addData('pending', $dataPending)
             ->addData('success', $dataSuccess)
             ->addData('failed', $dataFailed)
-            ->setColors(['#F7DC6F', '#007bff', '#dc3545'])
+            ->addData('total', $dataTotal)
+            ->setColors(['#F7DC6F', '#28a745','#dc3545', '#007bff' ])
             ->setXAxisOption(new XAxisOption($dataBulan));
     }
 }

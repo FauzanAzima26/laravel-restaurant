@@ -2,8 +2,8 @@
 
 @section('js')
 <script src="{{ $chart->cdn() }}"></script>
- 
- {{ $chart->script() }}
+
+{{ $chart->script() }}
 @endsection
 
 @section('title', 'Dashboard')
@@ -15,12 +15,61 @@
     <div class="col-12 mb-4">
         <div class="card bg-yellow-100 border-0 shadow">
             <div class="card-body p-2">
-            {!! $chart->container() !!}
+                {!! $chart->container() !!}
+
+                {{-- table --}}
+                <div class="card border-0 shadow mb-4">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-centered table-hover table-nowrap mb-0 rounded">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th class="border-0 rounded-start">No</th>
+                                        <th class="border-0">Name</th>
+                                        <th class="border-0">Type</th>
+                                        <th class="border-0">Amount</th>
+                                        <th class="border-0">Status</th>
+                                        <th class="border-0">File</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse($transactions as $item)
+                                        <tr>
+                                            <td>{{$loop->iteration}}
+                                            </td>
+                                            <td>{{ $item->name }}</td>
+                                            <td>{{ $item->type }}</td>
+                                            <td>Rp.
+                                                {{ number_format($item->amount, 0, ',', '.') }}
+                                            </td>
+                                            <td>
+                                                @if ($item->status == 'pending')
+                                                    <span class="badge bg-warning">Pending</span>
+                                                @elseif($item->status == 'failed')
+                                                    <span class="badge bg-danger">Failed</span>
+                                                @else
+                                                    <span class="badge bg-success">Success</span>
+                                                @endif
+                                            </td>
+                                            <td width="20%">
+                                                <img src="{{ asset('storage/' . $item->file . '') }}" target="_blank">
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="7" class="text-center">No Data Available</td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    {{-- table --}}
+
 
 
     <div class="col-12 col-sm-6 col-xl-4 mb-4">
