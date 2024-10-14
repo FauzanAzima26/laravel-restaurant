@@ -21,77 +21,7 @@
     </div>
 
     {{-- table --}}
-    <div class="card border-0 shadow mb-4">
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-centered table-hover table-nowrap mb-0 rounded">
-                    <thead class="thead-light">
-                        <tr>
-                            <th class="border-0 rounded-start">No</th>
-                            <th class="border-0">Name</th>
-                            <th class="border-0">Type</th>
-                            <th class="border-0">Amount</th>
-                            <th class="border-0">Status</th>
-                            <th class="border-0">File</th>
-                            <th class="border-0 rounded-end">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse($dashboard as $item)
-                            <tr>
-                                <td>{{ ($dashboard->currentPage() - 1) * $dashboard->perPage() + $loop->iteration }}
-                                </td>
-                                <td>{{ $item->name }}</td>
-                                <td>{{ $item->type }}</td>
-                                <td>Rp.
-                                    {{ number_format($item->amount, 0, ',', '.') }}
-                                </td>
-                                <td>
-                                    @if ($item->status == 'pending')
-                                        <span class="badge bg-warning">Pending</span>
-                                    @elseif($item->status == 'failed')
-                                        <span class="badge bg-danger">Failed</span>
-                                    @else
-                                        <span class="badge bg-success">Success</span>
-                                    @endif
-                                </td>
-                                <td width="20%">
-                                    <img src="{{ asset('storage/' . $item->file . '') }}" target="_blank">
-                                </td>
-                                <td>
-                                    <div class="btn-group d-flex">
-                                        <a href="{{ route('transaction.show', $item->uuid) }}"
-                                            class="btn btn-sm btn-primary mx-2">
-                                            <i class="bi bi-eye"></i>
-                                        </a>
 
-                                        <button type="button" class="btn btn-sm btn-warning" onclick="confirmModal(this)"
-                                            data-uuid="{{ $item->uuid }}">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </button>
-
-                                        <button class="btn btn-sm btn-danger mx-2" onclick="deleteTransaction(this)"
-                                            data-uuid="{{ $item->uuid }}">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="7" class="text-center">No Data Available</td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-
-                {{-- pagination --}}
-                <div class="mt-3">
-                    {{ $dashboard->links() }}
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div class="col-12 col-sm-6 col-xl-4 mb-4">
         <div class="card border-0 shadow">
